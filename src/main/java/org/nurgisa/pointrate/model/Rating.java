@@ -18,7 +18,7 @@ public class Rating {
 
     // Owning side (owns the foreign key)
     @OneToOne
-    @JoinColumn(name = "place_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "point_id", referencedColumnName = "id", nullable = false)
     private Point point;
 
     @Column(name = "education", nullable = false)

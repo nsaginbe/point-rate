@@ -1,11 +1,9 @@
 package org.nurgisa.pointrate.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
@@ -24,9 +22,4 @@ public class PointDTO {
     // Include in response only if not null
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private LocalDateTime timestamp;
-
-    public PointDTO(Double latitude, Double longitude) {
-        this.latitude = latitude;
-        this.longitude = longitude;
-    }
 }

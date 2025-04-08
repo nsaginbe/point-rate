@@ -28,4 +28,9 @@ public class Point {
 
     @Column(name = "longitude", nullable = false)
     private double longitude;
+
+    public Point(double latitude, double longitude) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
 }

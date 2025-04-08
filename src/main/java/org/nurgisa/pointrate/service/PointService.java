@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -28,20 +29,32 @@ public class PointService {
 
     @Transactional
     public Rating findRatingByPoint(Point point) {
-        Optional<Point> optionalPoint = pointRepository.findByLatitudeAndLongitude(
+        Optional<Point> existingPoint = pointRepository.findByLatitudeAndLongitude(
                 point.getLatitude(), point.getLongitude()
         );
 
-        if (optionalPoint.isPresent()) {
-            return optionalPoint.get().getRating();
+        if (existingPoint.isPresent()) {
+            Rating existingRating = existingPoint.get().getRating();
+
+            if (existingRating != null) {
+                return existingRating;
+            }
         }
 
-        Rating rating = ratingService.calculateRating(point);
+        Rating rating = ratingService.calculateRating(
+                point.getLatitude(),
+                point.getLongitude()
+        );
         rating.setPoint(point);
         point.setRating(rating);
 
         save(point);
 
         return rating;
+    }
+
+    @Transactional(readOnly = true)
+    public List<Point> findAll() {
+        return pointRepository.findAll();
     }
 }
