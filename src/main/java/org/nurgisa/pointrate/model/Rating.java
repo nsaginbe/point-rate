@@ -16,10 +16,14 @@ public class Rating {
     @Column(name = "id", nullable = false, unique = true, updatable = false)
     private Long id;
 
-    // Owning side (owns the foreign key)
+    // Owning side (owns the point_id foreign key)
     @OneToOne
     @JoinColumn(name = "point_id", referencedColumnName = "id", nullable = false)
     private Point point;
+
+    // Non-owning side (Rating have RatingCount)
+    @OneToOne(mappedBy = "rating", cascade = CascadeType.ALL)
+    private RatingCount ratingCount;
 
     @Column(name = "education", nullable = false)
     private double education;
