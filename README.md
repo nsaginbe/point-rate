@@ -32,5 +32,5 @@ Response:
 - integrates with 2GIS API and IQ Air API 
 - provides easy-to-use REST endpoint
 
-<h2>ETC</h2>
-It's open-sourced, so feel free to contribute any improvements!
+<h2>Tech stack</h2>
+Java, Spring Boot, PostgreSQL, REST API, Unit testing, Maven
